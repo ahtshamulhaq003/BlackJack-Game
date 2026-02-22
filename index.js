@@ -1,4 +1,7 @@
-
+let player = {
+    name: "Ahtsham",
+    balance: 200
+}
 let cards=[]
 let sum = 0
 let hasBlackJack = false
@@ -7,6 +10,8 @@ let message = ""
 let messageEl = document.getElementById("message-el")
 let sumEL=document.getElementById("sum-el")
 let cardsEl=document.getElementById("cards-el")
+let playerEl = document.getElementById("player-el")
+playerEl.textContent = player.name + ": $" + player.balance
 function getRandomCard(){
     let randomNumber= Math.floor(Math.random()*13)+1
     //since in this you will get reward betweem 2 to 11 ( 11 for A, 2 to 10 for simple cards
@@ -47,9 +52,11 @@ function startGame(){
     renderGame()
 }
 function newCard(){
-    console.log("Drawing a new card from the deck!")
-    let card=getRandomCard()
-    sum+=card
-    cards.push(card)
-    renderGame()
+    if(hasBlackJack===false && isAlive===true){
+        let card=getRandomCard()
+        sum+=card
+        cards.push(card)
+        renderGame()
+    }
+    
 }
